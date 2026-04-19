@@ -212,6 +212,24 @@ a:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+.tool-header h3 a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.tool-header h3 a:hover,
+.tool-header h3 a:focus {
+  color: rgb(250, 186, 186);
+  text-decoration: underline;
+}
+
+.tool-header h3 a:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 /* Skip Link Accessibility */
 .skip-link {
   position: absolute;
