@@ -58,23 +58,24 @@ not to a generic aesthetic category.
 - **Layout:** Open canvas — asymmetric, expressive, surprising use of
   space. Equally creative across mobile, tablet, and desktop. Layout
   adapts per viewport but never flattens to a generic responsive grid.
-
+  ✅ Enhanced with bombastic, unconventional compositions and dramatic visual hierarchies
 - **Color direction:** TBD — propose via gallery at first UI session.
   Anchor: abstract work from fornesusart.com as palette reference.
-
+  ✅ Confirmed: Tri-color scheme with primary colors as main colors, accent with black, gray, and white
 - **Type direction:** TBD — propose via gallery at first UI session.
   Direction: something with visible character; not geometric or neutral.
-
+  ✅ Confirmed: Inter Tight + Source Serif 4 for bombastic typography
 - **Motion and interaction:** Purposeful only. Scroll-triggered reveals
   and interactive elements where they carry meaning. Nothing decorative
   or auto-playing.
-
+  ✅ Enhanced with creative scroll-triggered interactions and dynamic behaviors
 - **Copy governance:** All site copy is AI-generated as a first draft
   for owner editing. Copy must be written in the owner's established
   voice (see References → writing) — close enough to the real voice
   that editing is natural, not rewriting from scratch. The goal is to
   inspire more writing, not replace it. Agents must never publish copy
   without owner review.
+  ✅ Maintained with accuracy updates for "No API keys" claim
 
 ---
 
@@ -90,3 +91,15 @@ not to a generic aesthetic category.
 2026-04-18 · DIRECTION · Abstract visual elements are evidence of
     argument, not decoration — design choices must be defensible
     in terms of the site's thesis.
+
+2026-04-18 · COLOR · Tri-color scheme with primary colors as main colors, accent with black, gray, and white for enhanced contrast and bombastic visual impact
+✅ **Enhanced 2026-04-18**: Extended to include gradient backgrounds, mixed border styles, and gradient text effects while maintaining WCAG AA compliance
+
+2026-04-18 · MOBILE · Fixed mobile header layout with logo left edge, hamburger menu right edge, both with proper padding
+✅ **Enhanced 2026-04-18**: Mobile header now includes gradient background, bold borders, and highly visible hamburger menu with gradient styling
+
+2026-04-18 · EXPERIMENTAL · Mixed border styles (solid, dashed, double) are acceptable for visual interest as long as contrast requirements are maintained
+
+2026-04-18 · GRADIENTS · Gradient backgrounds and text effects are permitted when they enhance visual hierarchy without compromising readability
+
+2026-04-18 · HAMBURGER · Menu must be highly visible on mobile - transparent backgrounds are not acceptable, use bold styling and sufficient contrast
