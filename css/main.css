@@ -514,3 +514,35 @@ a:focus-visible {
   outline: 2px solid var(--color-primary-2);
   outline-offset: 4px;
 }
+
+/* ===== ACCESSIBILITY: Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .geometric-shape-1,
+  .geometric-shape-2,
+  .geometric-shape-3,
+  .geometric-shape-4 {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  @keyframes titlePulse {
+    0%, 100% {
+      text-shadow: 0 0 5px rgba(255,77,77,0.2);
+    }
+  }
+}
+
+/* Ensure tool headers have sufficient contrast */
+.tool-header {
+  background: linear-gradient(135deg, #b32d2d, #2d2db3); /* fallback solid colors */
+  background: linear-gradient(135deg, rgba(255,77,77,0.9), rgba(77,77,255,0.9));
+}
