@@ -159,3 +159,86 @@ or rejection. -->
 2. Implement tool card interactive behaviors
 3. Add scroll-triggered reveal animations
 4. Begin content population for tool cards
+
+---
+
+## Session 2026-04-20 - Abstract Art Transformation
+
+### Key Decisions Made
+- **Abstract Art Approach**: Website transformed into interactive abstract art piece
+- **4-Phase Implementation**: Device-adaptive shapes, text-shape harmony, enhanced interactions, art footer
+- **Device Adaptation**: Mobile/tablet/desktop shape configurations via CSS custom properties
+- **Text-Shape Harmony**: Proximity-based blur, opacity, and text-shadow effects
+- **Enhanced Interactions**: Cursor movement, multi-layer animation system
+- **Art Footer**: Interactive navigation with icons (⌂⚙❐ℹ), hover tooltips, mobile labels
+- **Carousel**: Next button with infinite cycling
+
+### Implementation Completed
+- **Phase 1**: Device-adaptive shape system with scroll interaction
+- **Phase 2**: Text-shape harmony with proximity detection
+- **Phase 3**: Multi-layer animation (user, autonomous, generative)
+- **Phase 4**: Art footer transformation
+
+### Fixes Applied
+- Removed autonomous footer animation (should only animate on hover)
+- Added icons to header nav (mobile: icons only, desktop: icons + text)
+- Added icons to footer nav (visible labels on mobile)
+- Added labels to carousel Next button
+- Fixed infinite carousel cycling
+
+### Observed Taste Entries (New)
+
+2026-04-20 · INTERACTIVE_NAV · Navigation icons should clearly indicate destination on all viewports
+
+2026-04-20 · CYCLIC_INTERACTION · Interactive elements that wrap/cycle should do so infinitely
+
+---
+
+## Session 2026-04-21 - Tool Header Animation & Carousel/Article Fixes
+
+### Key Decisions Made
+- **Tool Header Animation**: Added cardFrameAnim (30s) to .tool-header with gradient background to sync with tool-card animated frame
+- **Carousel/Article Header Issues**: Headers not contained within animated black background - investigated multiple potential causes
+- **Final Resolution**: Removed gradient backgrounds from carousel-header and article-header entirely
+
+### Investigation Performed
+1. Removed padding from carousel-item and article-item containers
+2. Synchronized animation durations (35s→30s, 40s→30s)
+3. Removed perspective transforms from carousel and article items
+4. Matched background colors to tool-cards (rgba(15,15,25,0.4))
+5. Added explicit z-index to card-background elements
+6. Tested absolute positioning for headers
+
+### Outcome
+- Tool headers animate in sync with tool-card frames
+- Carousel/article headers show text against dark animated frame without gradient
+- User preference: Text visibility preferred over matching gradient animation
+
+### Observed Taste Entries (New)
+
+2026-04-21 · TEXT_VISIBILITY · Clear readable text against animated backgrounds is preferred over matching but uneven animations
+
+---
+
+## Session 2026-04-21 - Geometric Shapes & Card Background Fixes
+
+### Key Decisions Made
+- **Geometric Shapes Not Visible**: Shapes appeared in front of content despite z-index attempts
+- **Root Cause**: CSS stacking context - shapes at negative z-index were still behind document flow content
+- **Solution**: Set content containers (header, main, footer) to z-index: 10; shapes to z-index: -100; backgrounds to z-index: -1000
+- **Background Layering**: body::before=-1000, body::after=-1001, shapes=-100, content=10
+
+### Implementation Completed
+- Fixed geometric shape z-index stacking (shapes now behind all content, visible through backgrounds)
+- Added randomDrift animation to shapes - they now drift across screen while rotating/pulsing
+- Removed tool-header background - tool cards now show through cleanly
+- Added carousel-icon hover effect (rotate + scale)
+- Card backgrounds now have random opacity (0.25-0.75) and muted RGB colors (max 100)
+
+### Observed Taste Entries (New)
+
+2026-04-21 · LAYERED_Z_INDEX · Content containers require explicit z-index to properly layer above animated background shapes
+
+---
+
+*Session memory updated - geometric shapes and card background fixes complete*

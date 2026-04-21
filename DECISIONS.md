@@ -193,3 +193,49 @@ Disclosed one-time infrastructure cost.
 - **Icon integration**: Icons preceding each article header
 - **Replicability**: Simple class-based structure for easy duplication
 - **Status**: ✅ Implemented and verified
+
+## Completed Decisions 2026-04-21
+
+### Tool Header Animation Sync
+- **Goal**: Make tool-header background animate in sync with tool-card animated frame
+- **Implementation**: Added cardFrameAnim animation (30s) to .tool-header with gradient background
+- **Status**: ✅ Implemented
+
+### Carousel/Article Header Animation Issues
+- **Issue**: Headers for carousel items and article items were not contained within animated black background
+- **Investigated**: Multiple potential causes (padding, z-index, perspective transforms, layering)
+- **Attempts**:
+  1. Removed padding from carousel-item and article-item containers
+  2. Changed animation durations to match (35s→30s, 40s→30s)
+  3. Removed perspective transforms from carousel and article items
+  4. Matched background colors to tool-cards (rgba(15,15,25,0.4))
+  5. Added explicit z-index to card-background elements
+- **Final Resolution**: Removed gradient backgrounds entirely from carousel-header and article-header
+- **Rationale**: Text remains visible against dark animated frame; avoids visual mismatch from uneven animations
+- **Status**: ✅ Implemented
+
+### Geometric Shapes Visibility Fix
+- **Issue**: Shapes appeared in front of all content despite negative z-index
+- **Root Cause**: CSS stacking context - regular content creates implicit z-index 0, sitting above negative z-index elements
+- **Solution**:
+  - Set body::before (gradient) to z-index: -1000
+  - Set body::after (dark bg) to z-index: -1001
+  - Set shapes to z-index: -100
+  - Set content containers (header, main, footer) to z-index: 10
+- **Added**: randomDrift animation to shapes - they now drift across screen while rotating/pulsing
+- **Status**: ✅ Implemented
+
+### Tool Header Background Removal
+- **Issue**: Tool header had visible background blocking tool card animation
+- **Resolution**: Removed background from .tool-header entirely
+- **Status**: ✅ Implemented
+
+### Carousel Icon Hover Effect
+- **Added**: rotate(15deg) scale(1.1) on carousel-item:hover .carousel-icon
+- **Matches**: Tool card and article item hover behavior
+- **Status**: ✅ Implemented
+
+### Card Background Randomization
+- **Added**: Random opacity (0.25-0.75) per card on page load
+- **Added**: Random muted RGB colors (max value 100) per card
+- **Status**: ✅ Implemented
