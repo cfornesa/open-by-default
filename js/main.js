@@ -38,8 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
   cardBackgrounds.forEach(bg => {
     const duration = (Math.random() * 12 + 8).toFixed(1)   // 8–20s (more variety)
     const delay = (Math.random() * 6).toFixed(1)           // 0–6s
+    bg.style.webkitAnimation = `cardPulseRotateDrift ${duration}s infinite alternate ease-in-out`
     bg.style.animation = `cardPulseRotateDrift ${duration}s infinite alternate ease-in-out`
     bg.style.animationDelay = `${delay}s`
+    
+    // Set explicit transition for iOS Safari
+    bg.style.webkitTransition = 'background-color 4s ease-in-out'
+    bg.style.transition = 'background-color 4s ease-in-out'
     
     // Random muted color with RGB max value of 100, opacity 0.25 to 0.75
     const r = Math.floor(Math.random() * 76);
@@ -62,12 +67,19 @@ function getRandomMutedColor() {
 const allCardBackgrounds = document.querySelectorAll('.tool-card .card-background, .carousel-item .card-background, .articles-container .article-item .card-background');
 
 allCardBackgrounds.forEach(bg => {
+  // Set explicit transition for iOS Safari
+  bg.style.webkitTransition = 'background-color 4s ease-in-out'
+  bg.style.transition = 'background-color 4s ease-in-out'
+  
   // Set initial random muted colour
   bg.style.backgroundColor = getRandomMutedColor();
 
   // Change colour every 5 to 10 seconds
   const intervalTime = 5000 + Math.random() * 5000; // 5–10s
   setInterval(() => {
+    // Ensure transition is set before changing color for iOS Safari
+    bg.style.webkitTransition = 'background-color 4s ease-in-out'
+    bg.style.transition = 'background-color 4s ease-in-out'
     bg.style.backgroundColor = getRandomMutedColor();
   }, intervalTime);
 });

@@ -160,6 +160,7 @@ p {
   height: 40vmax;
   background: linear-gradient(135deg, rgba(255,77,77,0.4), rgba(77,77,255,0.4));
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  -webkit-animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
   animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
   z-index: -100;
 }
@@ -172,6 +173,7 @@ p {
   height: 50vmax;
   background: linear-gradient(45deg, rgba(68,255,68,0.4), rgba(77,77,255,0.4));
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  -webkit-animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
   animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
   z-index: -100;
 }
@@ -184,6 +186,7 @@ p {
   height: 30vmax;
   background: radial-gradient(circle, rgba(255,200,100,0.4), rgba(255,77,77,0.4));
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  -webkit-animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
   animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
   z-index: -100;
 }
@@ -196,6 +199,7 @@ p {
   height: 35vmax;
   background: linear-gradient(120deg, rgba(255,77,77,0.4), rgba(68,255,68,0.4));
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  -webkit-animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
   animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
   z-index: -100;
 }
@@ -281,14 +285,15 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text);
 }
 h1 {
-  font-size: clamp(3rem, 8vw, 5.5rem); /* Increased from clamp(2.75rem, 7vw, 5rem) */
+  font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 700;
-  letter-spacing: -0.05em; /* Slightly increased for more expressive feel */
+  letter-spacing: -0.05em;
   background: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2), var(--color-primary-3));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-shadow: 0 0 15px rgba(255,77,77,0.4);
+  -webkit-animation: titlePulse 3s infinite alternate;
   animation: titlePulse 3s infinite alternate;
   position: relative;
 }
@@ -377,6 +382,7 @@ main {
   backdrop-filter: blur(12px);
   border: 1px solid var(--color-primary-1);
   border-radius: 60px;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 .nav-container:hover {
@@ -394,6 +400,7 @@ main {
   color: transparent;
   text-decoration: none;
   position: relative;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 .site-title a:hover {
@@ -409,6 +416,7 @@ main {
   border-radius: 8px;
   padding: 1em;
   cursor: pointer;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -428,6 +436,7 @@ main {
   height: 2px;
   display: block;
   position: relative;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 .hamburger-icon::before,
@@ -438,6 +447,7 @@ main {
   height: 2px;
   background-color: red;
   left: 0;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 .hamburger-icon::before {
@@ -465,6 +475,7 @@ main {
   font-weight: 500;
   position: relative;
   padding: 0.5em 0;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -482,6 +493,7 @@ main {
   width: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--color-primary-1), var(--color-primary-2));
+  -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
 .nav-links a:hover {
@@ -537,6 +549,7 @@ main {
 .tool-card {
   background: transparent;
   border: none;
+  -webkit-transition: all var(--transition-base);
   transition: all var(--transition-base);
   overflow: visible;
   position: relative;
@@ -550,7 +563,9 @@ main {
   right: 0;
   bottom: 0;
   background: linear-gradient(45deg, transparent 30%, rgba(255,77,77,0.05) 50%, transparent 70%);
+  -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+  -webkit-transition: transform 0.6s ease;
   transition: transform 0.6s ease;
   pointer-events: none;
 }
@@ -590,9 +605,11 @@ main {
 .tool-icon { 
   font-size: 2rem; 
   filter: drop-shadow(0 0 3px white);
+  -webkit-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
 }
 .tool-card:hover .tool-icon {
+  -webkit-transform: scale(1.2) rotate(15deg);
   transform: scale(1.2) rotate(15deg);
 }
 .tool-card h3 a { 
@@ -608,6 +625,7 @@ main {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--color-primary-2), var(--color-primary-3));
+  -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
 .tool-card:hover h3 a::after {
@@ -641,6 +659,7 @@ main {
   color: var(--color-text);
   font-size: 1.5rem;
   cursor: pointer;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -648,17 +667,19 @@ main {
 }
 
 .carousel-nav:hover {
+  -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 
 .carousel-nav:active {
+  -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
 
 .carousel-container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: 2em var(--space-lg);
   position: relative;
   overflow: visible;
 }
@@ -680,9 +701,11 @@ main {
   scroll-snap-align: start;
   background: transparent;
   border: none;
+  -webkit-transition: all var(--transition-base);
   transition: all var(--transition-base);
   position: relative;
   isolation: isolate;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   overflow: visible;
 }
@@ -707,9 +730,11 @@ main {
   background: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2));
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(255,77,77,0.3);
+  -webkit-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
 }
 .carousel-item:hover .carousel-icon {
+  -webkit-transform: rotate(15deg) scale(1.1);
   transform: rotate(15deg) scale(1.1);
 }
 .carousel-item h3 {
@@ -726,6 +751,7 @@ main {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--color-primary-2), var(--color-primary-3));
+  -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
 .carousel-item:hover h3::after {
@@ -758,9 +784,11 @@ main {
   margin-bottom: var(--space-3xl);
   background: transparent;
   border: none;
+  -webkit-transition: all var(--transition-base);
   transition: all var(--transition-base);
   position: relative;
   isolation: isolate;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   overflow: visible;
 }
@@ -793,10 +821,13 @@ main {
   background: linear-gradient(135deg, var(--color-primary-1), var(--color-primary-2));
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(255,77,77,0.3);
+  -webkit-transform: rotate(0deg);
   transform: rotate(0deg);
+  -webkit-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
 }
 .articles-container .article-item:hover .article-icon {
+  -webkit-transform: rotate(15deg) scale(1.1);
   transform: rotate(15deg) scale(1.1);
 }
 .articles-container .article-item h3 {
@@ -813,6 +844,7 @@ main {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--color-primary-2), var(--color-primary-3));
+  -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
 .articles-container .article-item:hover h3::after {
@@ -937,6 +969,7 @@ footer h3 { color: var(--color-primary-1); }
   border: 1px solid rgba(255,255,255,0.15);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
+  -webkit-transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
   transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
   cursor: pointer;
   overflow: hidden;
@@ -992,6 +1025,7 @@ footer h3 { color: var(--color-primary-1); }
 }
 
 .art-component:hover {
+  -webkit-transform: scale(1.2) rotate(10deg);
   transform: scale(1.2) rotate(10deg);
   background: rgba(255,255,255,0.15);
   border-color: var(--color-primary-2);
@@ -999,6 +1033,7 @@ footer h3 { color: var(--color-primary-1); }
 }
 
 .art-component:active {
+  -webkit-transform: scale(0.95);
   transform: scale(0.95);
 }
 
@@ -1007,6 +1042,7 @@ footer h3 { color: var(--color-primary-1); }
   position: absolute;
   bottom: 120%;
   left: 50%;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   background: rgba(0,0,0,0.8);
   color: var(--color-accent-white);
@@ -1016,6 +1052,7 @@ footer h3 { color: var(--color-primary-1); }
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
+  -webkit-transition: opacity 0.2s ease;
   transition: opacity 0.2s ease;
   z-index: 10;
 }
@@ -1025,10 +1062,12 @@ footer h3 { color: var(--color-primary-1); }
   position: absolute;
   bottom: 110%;
   left: 50%;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   border: 4px solid transparent;
   border-top-color: rgba(0,0,0,0.8);
   opacity: 0;
+  -webkit-transition: opacity 0.2s ease;
   transition: opacity 0.2s ease;
   z-index: 10;
 }
@@ -1111,6 +1150,7 @@ footer h3 { color: var(--color-primary-1); }
   z-index: 0;
   will-change: transform, opacity;
   -webkit-will-change: transform, opacity;
+  -webkit-transition: background-color 4s ease-in-out;
   transition: background-color 4s ease-in-out;   /* slow color morph */
 }
 
@@ -1242,6 +1282,7 @@ footer h3 { color: var(--color-primary-1); }
 /* Apply harmony to specific text elements */
 h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .article-content p {
   position: relative;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   letter-spacing: var(--dynamic-letter-spacing, -0.05em);
 }
@@ -1251,6 +1292,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
 .articles-container .article-item:hover .article-content p,
 .carousel-item:hover .article-content p {
   /* Allow shapes to influence these on hover */
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
@@ -1258,6 +1300,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
 .footer-about p,
 .footer-about h3 {
   position: relative;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   letter-spacing: var(--dynamic-letter-spacing, -0.03em);
 }
@@ -1286,8 +1329,10 @@ h1.shape-far, h2.shape-far, h3.shape-far, .hero-lead.shape-far {
     backdrop-filter: blur(20px);
     padding: var(--space-lg);
     border-radius: 0 0 30px 30px;
+    -webkit-transform: translateY(-120%);
     transform: translateY(-120%);
     opacity: 0;
+    -webkit-transition: all 0.3s;
     transition: all 0.3s;
     pointer-events: none;
     gap: var(--space-md);
@@ -1406,6 +1451,7 @@ a:focus-visible {
 /* Apply harmony to specific text elements */
 h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .article-content p {
   position: relative;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   letter-spacing: var(--dynamic-letter-spacing, -0.05em);
 }
@@ -1415,6 +1461,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
 .articles-container .article-item:hover .article-content p,
 .carousel-item:hover .article-content p {
   /* Allow shapes to influence these on hover */
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
@@ -1422,6 +1469,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
 .footer-about p,
 .footer-about h3 {
   position: relative;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   letter-spacing: var(--dynamic-letter-spacing, -0.03em);
 }
@@ -1435,6 +1483,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   height: 40vmax;
   background: linear-gradient(135deg, #ff6b6b, #6b6bff);
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  -webkit-animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
   animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
   z-index: -100;
   pointer-events: none;
@@ -1450,6 +1499,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   height: 50vmax;
   background: linear-gradient(45deg, #6bff6b, #6b6bff);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  -webkit-animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
   animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
   z-index: -100;
   pointer-events: none;
@@ -1465,6 +1515,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   height: 30vmax;
   background: radial-gradient(circle, #ffcc66, #ff6b6b);
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  -webkit-animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
   animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
   z-index: -100;
   pointer-events: none;
@@ -1480,6 +1531,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   height: 35vmax;
   background: linear-gradient(120deg, #ff6b6b, #6bff6b);
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  -webkit-animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
   animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
   z-index: -100;
   pointer-events: none;
@@ -1495,6 +1547,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   height: 50vmax;
   background: linear-gradient(45deg, #6bff6b, #6b6bff);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  -webkit-animation: morphTriangle 35s infinite alternate ease-in-out;
   animation: morphTriangle 35s infinite alternate ease-in-out;
   z-index: 0;
   pointer-events: none;
@@ -1510,6 +1563,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   height: 30vmax;
   background: radial-gradient(circle, #ffcc66, #ff6b6b);
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  -webkit-animation: pulseScale 25s infinite alternate;
   animation: pulseScale 25s infinite alternate;
   z-index: 0;
   pointer-events: none;
@@ -1525,6 +1579,7 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   height: 35vmax;
   background: linear-gradient(120deg, #ff6b6b, #6bff6b);
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  -webkit-animation: driftRotate 40s infinite alternate-reverse;
   animation: driftRotate 40s infinite alternate-reverse;
   z-index: 0;
   pointer-events: none;
