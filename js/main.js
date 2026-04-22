@@ -348,7 +348,134 @@ allCardBackgrounds.forEach(bg => {
         requestAnimationFrame(animateShapes);
       }
       
+requestAnimationFrame(animateShapes);
       requestAnimationFrame(animateShapes);
+      
+      // ===== TITLE ANIMATION FOR iOS =====
+      // Animate h1 title (titlePulse equivalent)
+      const title = document.querySelector('h1');
+      if (title) {
+        title.style.animation = 'none';
+        title.style.webkitAnimation = 'none';
+        
+        let titleLastUpdate = 0;
+        const titleSpeed = 0.003;
+        
+        function animateTitle(timestamp) {
+          const elapsed = timestamp;
+          // Pulse shadow between 5px and 25px
+          const shadowIntensity = 5 + Math.abs(Math.sin(elapsed * titleSpeed * Math.PI)) * 20;
+          title.style.textShadow = `0 0 ${shadowIntensity}px rgba(255,77,77,0.2), 0 0 ${shadowIntensity * 2}px rgba(77,77,255,0.1)`;
+          requestAnimationFrame(animateTitle);
+        }
+        
+        requestAnimationFrame(animateTitle);
+      }
+      
+      // ===== CARD BACKGROUND ANIMATIONS FOR iOS =====
+      // Animate card backgrounds (pulse, rotate, drift)
+      const cardBackgrounds = document.querySelectorAll('.tool-card .card-background, .carousel-item .card-background, .articles-container .article-item .card-background');
+      if (cardBackgrounds.length > 0) {
+        console.log('Using JS card animations for iOS Safari');
+        
+        // Disable CSS animations and set up for JS
+        const cardStates = [];
+        cardBackgrounds.forEach((bg, index) => {
+          // Disable CSS animation
+          bg.style.animation = 'none';
+          bg.style.webkitAnimation = 'none';
+          
+          // Set initial random muted color
+          const r = Math.floor(Math.random() * 76);
+          const g = Math.floor(Math.random() * 76);
+          const b = Math.floor(Math.random() * 76);
+          const opacity = (Math.random() * 0.1 + 0.1).toFixed(2);
+          bg.style.background = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+          
+          // Set up color transition
+          bg.style.webkitTransition = 'background-color 4s ease-in-out';
+          bg.style.transition = 'background-color 4s ease-in-out';
+          
+          cardStates.push({
+            element: bg,
+            startTime: performance.now() + index * 200,
+            // Animation parameters - matching CSS cardPulseRotateDrift
+            duration: 8 + Math.random() * 12, // 8-20s
+            scaleSpeed: (Math.random() * 0.0002 + 0.0001),
+            rotateSpeed: (Math.random() * 0.0001 + 0.00005),
+            translateSpeed: (Math.random() * 0.0001 + 0.00005),
+            lastColorChange: 0,
+            colorInterval: 5000 + Math.random() * 5000
+          });
+        });
+        
+        // Card background animation loop
+        function animateCards(timestamp) {
+          cardStates.forEach(state => {
+            const elapsed = timestamp - state.startTime;
+            
+            // Scale: oscillates between 1 and ~1.12
+            const scale = 1 + Math.sin(elapsed * state.scaleSpeed * Math.PI) * 0.12;
+            
+            // Rotate: oscillates between -2deg and 2deg
+            const rotate = Math.sin(elapsed * state.rotateSpeed * Math.PI) * 2;
+            
+            // Translate: small movement
+            const translateX = Math.sin(elapsed * state.translateSpeed * Math.PI) * 3;
+            const translateY = Math.cos(elapsed * state.translateSpeed * Math.PI) * 3;
+            
+            // Apply transform with webkit prefix
+            const transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale}) rotate(${rotate}deg)`;
+            state.element.style.transform = transform;
+            state.element.style.webkitTransform = transform;
+            
+            // Handle color changes
+            if (timestamp - state.lastColorChange > state.colorInterval) {
+              const r = Math.floor(Math.random() * 76);
+              const g = Math.floor(Math.random() * 76);
+              const b = Math.floor(Math.random() * 76);
+              const opacity = (Math.random() * 0.1 + 0.1).toFixed(2);
+              state.element.style.background = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+              state.lastColorChange = timestamp;
+              state.colorInterval = 5000 + Math.random() * 5000;
+            }
+          });
+          
+          requestAnimationFrame(animateCards);
+        }
+        
+        requestAnimationFrame(animateCards);
+      }
+      
+      // ===== TOUCH/HOVER INTERACTIONS FOR iOS =====
+      // Add touch feedback for cards
+      const toolCards = document.querySelectorAll('.tool-card, .carousel-item, .articles-container .article-item');
+      toolCards.forEach(card => {
+        card.addEventListener('touchstart', function() {
+          this.classList.add('touch-active');
+        }, { passive: true });
+        card.addEventListener('touchend', function() {
+          this.classList.remove('touch-active');
+        }, { passive: true });
+      });
+      
+      // Add touch feedback for icons
+      const toolIcons = document.querySelectorAll('.tool-icon, .carousel-icon, .article-icon');
+      toolIcons.forEach(icon => {
+        icon.style.webkitTransition = 'transform 0.3s ease';
+        icon.style.transition = 'transform 0.3s ease';
+      });
+      
+      // Add touch feedback to nav links
+      const navLinksItems = document.querySelectorAll('.nav-links a');
+      navLinksItems.forEach(link => {
+        link.addEventListener('touchstart', function() {
+          this.style.transform = 'scale(1.05)';
+        }, { passive: true });
+        link.addEventListener('touchend', function() {
+          this.style.transform = '';
+        }, { passive: true });
+      });
     }
   }
 })

@@ -1183,6 +1183,8 @@ footer h3 { color: var(--color-primary-1); }
   z-index: 0;
   will-change: transform, opacity;
   -webkit-will-change: transform, opacity;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   -webkit-transition: background-color 4s ease-in-out;
   transition: background-color 4s ease-in-out;   /* slow color morph */
 }
@@ -1426,6 +1428,24 @@ h1.shape-far, h2.shape-far, h3.shape-far, .hero-lead.shape-far {
 a:focus-visible {
   outline: 2px solid var(--color-primary-2);
   outline-offset: 4px;
+}
+
+/* ===== TOUCH/HOVER STATES FOR iOS ===== */
+.tool-card.touch-active .tool-icon,
+.carousel-item.touch-active .carousel-icon,
+.articles-container .article-item.touch-active .article-icon {
+  -webkit-transform: scale(1.2) rotate(15deg);
+  transform: scale(1.2) rotate(15deg);
+}
+
+.tool-card.touch-active h3 a::after,
+.carousel-item.touch-active h3::after,
+.articles-container .article-item.touch-active h3::after {
+  width: 100%;
+}
+
+.nav-links a.touch-active::after {
+  width: 100%;
 }
 
 /* ===== ACCESSIBILITY: Reduced Motion ===== */
