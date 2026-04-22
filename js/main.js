@@ -267,4 +267,88 @@ allCardBackgrounds.forEach(bg => {
       }, 150)
     }, { passive: true })
   }
+
+  // ===== iOS JS ANIMATIONS =====
+  // JS-based animations for iOS Safari (better compatibility)
+  // Feature detection: check if CSS animations might fail
+  const testElement = document.createElement('div');
+  const hasCSSAnimation = testElement.style.animation !== undefined;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+    (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && 
+    (/iPhone|iPad|iPod/.test(navigator.userAgent) || ('ontouchend' in document && !/Android/.test(navigator.userAgent)));
+  
+  // Use JS animations on iOS devices or when CSS animations might fail
+  if (isIOS || (isSafari && hasCSSAnimation)) {
+    const shapes = document.querySelectorAll('.geometric-shape');
+    if (shapes.length > 0) {
+      console.log('Using JS animations for iOS Safari');
+      
+      // Disable CSS animations
+      shapes.forEach(shape => {
+        shape.style.animation = 'none';
+        shape.style.webkitAnimation = 'none';
+        shape.style.transform = 'translateZ(0)';
+      });
+      
+      // Animation state for each shape
+      const shapeStates = [];
+      shapes.forEach((shape, index) => {
+        const type = shape.getAttribute('data-art-type');
+        shapeStates.push({
+          element: shape,
+          type: type,
+          startTime: performance.now() + index * 500,
+          // Random parameters for variety
+          rotateSpeed: 0.0001 + Math.random() * 0.0002,
+          scaleSpeed: 0.00015 + Math.random() * 0.00015,
+          translateX: 0,
+          translateY: 0,
+          translateXSpeed: (Math.random() - 0.5) * 0.02,
+          translateYSpeed: (Math.random() - 0.5) * 0.02,
+          bounds: {
+            maxX: window.innerWidth * 0.3,
+            maxY: window.innerHeight * 0.25
+          }
+        });
+      });
+      
+      // Animation loop
+      function animateShapes(timestamp) {
+        shapeStates.forEach(state => {
+          const elapsed = timestamp - state.startTime;
+          
+          let transform = '';
+          
+          if (state.type === 'morph-rotate') {
+            const rotate = elapsed * state.rotateSpeed * 360;
+            const scale = 1 + Math.sin(elapsed * state.scaleSpeed * 2 * Math.PI) * 0.15;
+            transform = `translateZ(0) rotate(${rotate}deg) scale(${scale})`;
+            
+          } else if (state.type === 'morph-triangle') {
+            const translate = Math.sin(elapsed * 0.00005) * 50;
+            const scale = 1 + Math.sin(elapsed * state.scaleSpeed * 2 * Math.PI) * 0.1;
+            transform = `translateZ(0) translate(${translate}px, ${-translate}px) scale(${scale})`;
+            
+          } else if (state.type === 'pulse-scale') {
+            const scale = 0.7 + Math.abs(Math.sin(elapsed * state.scaleSpeed * 2 * Math.PI)) * 0.3;
+            const rotate = Math.sin(elapsed * state.rotateSpeed * 360) * 15;
+            transform = `translateZ(0) scale(${scale}) rotate(${rotate}deg)`;
+            
+          } else if (state.type === 'drift-rotate') {
+            const rotate = elapsed * state.rotateSpeed * 360;
+            const translate = Math.sin(elapsed * 0.00003) * state.bounds.maxX;
+            transform = `translateZ(0) translate(${translate}px, ${translate * 0.5}px) rotate(${rotate}deg)`;
+          }
+          
+          state.element.style.transform = transform;
+          state.element.style.webkitTransform = transform;
+        });
+        
+        requestAnimationFrame(animateShapes);
+      }
+      
+      requestAnimationFrame(animateShapes);
+    }
+  }
 })
