@@ -239,3 +239,11 @@ Disclosed one-time infrastructure cost.
 - **Added**: Random opacity (0.25-0.75) per card on page load
 - **Added**: Random muted RGB colors (max value 100) per card
 - **Status**: ✅ Implemented
+
+### iOS/Safari Animation Compatibility
+- **Approach**: Unified JavaScript animations (Option A)
+- **Reason**: CSS animations had cross-browser inconsistencies; JS provides consistent behavior
+- **Scope**: All animations now in js/main.js - geometric shapes, card backgrounds, title pulse
+- **Color Ranges Restored**: RGB 0-100, opacity 0.15-0.6 per card
+- **Border-Radius**: Unique morphing animation per card (randomized phase, speed, variation)
+- **Status**: ✅ Implemented

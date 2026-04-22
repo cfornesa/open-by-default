@@ -153,3 +153,6 @@ summarize in MEMORY.md.
 - `indieweb-principles` may be loaded when any decision touches ownership,
   portability, or longevity — this project's content must remain portable
   and owner-controlled indefinitely.
+- When troubleshooting mobile browser issues, ask if CSS or JS approach is preferred before implementing
+- Before making file edits, scan for similar patterns across file to avoid duplicates
+- At session end, propose to log significant technical decisions made during session even if human doesn't respond

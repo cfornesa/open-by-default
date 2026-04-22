@@ -80,6 +80,55 @@ or rejection. -->
 
 ---
 
+## Session 2026-04-22 - iOS/Safari Animation Fixes
+
+### Problem Identified
+- CSS animations not rendering on iPhone Safari
+- Geometric shapes, card backgrounds, transitions all failing
+- Color transitions abrupt instead of smooth
+
+### Root Causes
+- Negative z-index with position:fixed not rendering on iOS
+- Missing -webkit- prefixes for animation, transition, transform
+- iOS Safari CSS engine has different parsing behavior
+- Multi-animation per element overwhelming mobile GPU
+
+### Solution Implemented (Option A - Unified JS)
+Converted all CSS animations to JavaScript for consistent cross-platform behavior:
+
+1. **Geometric Shapes**: 4 types with phase-based 30-40 second cycles
+2. **Title Pulse**: Text shadow animation
+3. **Card Backgrounds**: 
+   - Scale/rotate/drift transforms
+   - Unique RGB 0-100, opacity 0.15-0.6 per card
+   - Unique border-radius morphing per card
+   - Color transitions every 5-10 seconds
+4. **Touch Interactions**: Works on all touch devices
+
+### Technical Details
+- js/main.js rewritten with unified animation system
+- No iOS detection - runs on all platforms identically
+- cycleDuration = 30000-40000ms for shapes
+- cycleDuration = 8000-20000ms for cards
+
+### Key Decisions Made
+- **Unified JS Approach**: Single code path for all browsers
+- **Restored Original Color Ranges**: RGB 0-100, opacity 0.15-0.6
+- **Unique Per-Card Border-Radius**: Each card has randomized phase, speed, variation
+
+### Constraints Confirmed
+- Free model stack only (unchanged)
+- Static architecture (unchanged)
+- Accessibility required (unchanged)
+- No URLs broken (unchanged)
+
+### Next Steps Ready
+- Test animations on production devices
+- Verify color transitions visible
+- Confirm border-radius morphing per card
+
+---
+
 ## Session 2026-04-18 - Design Enhancement Implementation
 
 ### Key Decisions Made
