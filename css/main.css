@@ -162,7 +162,12 @@ p {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   -webkit-animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
   animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
+  pointer-events: none;
 }
 
 /* Shape 2: Morphing Triangle (Green/Blue) */
@@ -175,7 +180,12 @@ p {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   -webkit-animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
   animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
+  pointer-events: none;
 }
 
 /* Shape 3: Pulsing Pentagon (Yellow/Red) */
@@ -188,7 +198,12 @@ p {
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
   -webkit-animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
   animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
+  pointer-events: none;
 }
 
 /* Shape 4: Drifting Hexagon (Mixed) */
@@ -201,52 +216,66 @@ p {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   -webkit-animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
   animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
+  pointer-events: none;
 }
 
 /* Random drift animation for shapes moving across screen */
 @keyframes randomDrift {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(30vw, -20vh); }
-  50% { transform: translate(-20vw, 25vh); }
-  75% { transform: translate(15vw, 15vh); }
-  100% { transform: translate(0, 0); }
+  0% { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
+  25% { -webkit-transform: translate(30vw, -20vh); transform: translate(30vw, -20vh); }
+  50% { -webkit-transform: translate(-20vw, 25vh); transform: translate(-20vw, 25vh); }
+  75% { -webkit-transform: translate(15vw, 15vh); transform: translate(15vw, 15vh); }
+  100% { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
 }
 
 /* Keyframes for geometric morphing */
 @keyframes morphRotate {
   0% {
+    -webkit-transform: rotate(0deg) scale(1);
     transform: rotate(0deg) scale(1);
   }
   50% {
+    -webkit-transform: rotate(22.5deg) scale(1.15);
     transform: rotate(22.5deg) scale(1.15);
   }
   100% {
+    -webkit-transform: rotate(45deg) scale(0.85);
     transform: rotate(45deg) scale(0.85);
   }
 }
 
 @keyframes morphTriangle {
   0% {
+    -webkit-transform: translate(0, 0) scale(1);
     transform: translate(0, 0) scale(1);
   }
   33% {
+    -webkit-transform: translate(3%, -3%) scale(1.1);
     transform: translate(3%, -3%) scale(1.1);
   }
   66% {
+    -webkit-transform: translate(-3%, 3%) scale(0.9);
     transform: translate(-3%, 3%) scale(0.9);
   }
   100% {
+    -webkit-transform: translate(0, 0) scale(1);
     transform: translate(0, 0) scale(1);
   }
 }
 
 @keyframes pulseScale {
   0% {
+    -webkit-transform: scale(0.7) rotate(0deg);
     transform: scale(0.7) rotate(0deg);
     opacity: 0.4;
   }
   100% {
+    -webkit-transform: scale(1) rotate(15deg);
     transform: scale(1) rotate(15deg);
     opacity: 0.8;
   }
@@ -254,9 +283,11 @@ p {
 
 @keyframes driftRotate {
   0% {
+    -webkit-transform: translate(0, 0) rotate(0deg);
     transform: translate(0, 0) rotate(0deg);
   }
   100% {
+    -webkit-transform: translate(4%, 4%) rotate(30deg);
     transform: translate(4%, 4%) rotate(30deg);
   }
 }
@@ -369,6 +400,8 @@ main {
   overflow: hidden;
   width: 95vw;
   margin: 0 auto;
+  isolation: isolate;
+  -webkit-isolation: isolate;
 } 
 .nav-container {
   width: 95vw;
@@ -1485,7 +1518,11 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   -webkit-animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
   animation: morphRotate 30s infinite alternate ease-in-out, randomDrift 60s infinite linear;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
   pointer-events: none;
   opacity: 0.6;
 }
@@ -1501,7 +1538,11 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   -webkit-animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
   animation: morphTriangle 35s infinite alternate ease-in-out, randomDrift 70s infinite linear reverse;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
   pointer-events: none;
   opacity: 0.6;
 }
@@ -1517,7 +1558,11 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
   -webkit-animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
   animation: pulseScale 25s infinite alternate, randomDrift 80s infinite linear;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
   pointer-events: none;
   opacity: 0.6;
 }
@@ -1533,7 +1578,11 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   -webkit-animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
   animation: driftRotate 40s infinite alternate-reverse, randomDrift 90s infinite linear reverse;
-  z-index: -100;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
   pointer-events: none;
   opacity: 0.6;
 }
@@ -1549,7 +1598,11 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   -webkit-animation: morphTriangle 35s infinite alternate ease-in-out;
   animation: morphTriangle 35s infinite alternate ease-in-out;
-  z-index: 0;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
   pointer-events: none;
   opacity: 0.6;
 }
@@ -1565,7 +1618,11 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
   -webkit-animation: pulseScale 25s infinite alternate;
   animation: pulseScale 25s infinite alternate;
-  z-index: 0;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
   pointer-events: none;
   opacity: 0.6;
 }
@@ -1581,7 +1638,11 @@ h1, h2, h3, .hero-lead, .tool-content p, .article-content p, .carousel-item .art
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   -webkit-animation: driftRotate 40s infinite alternate-reverse;
   animation: driftRotate 40s infinite alternate-reverse;
-  z-index: 0;
+  z-index: 1;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-will-change: transform;
   pointer-events: none;
   opacity: 0.6;
 }
