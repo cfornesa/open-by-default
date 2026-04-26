@@ -4,7 +4,7 @@
 
 ## Project Profile
 
-- **Project name:** Open by Default
+- **Project name:** Open Creatrweb
 - **Brand parent:** Augment Humankind
 - **Purpose:** Fully responsive, zero-backend interactive field guide
   to free open-source AI tools — written in the owner's voice.

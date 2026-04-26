@@ -150,7 +150,7 @@ summarize in MEMORY.md.
 | index.html | Basic overview of this project |
 | about.html | Information about this project |
 | tools.html | Information about open-source tools |
-| guides.html | Guides about using open-source tools |
+| /articles/index.html | Articles about using open-source tools |
 | css/main.css | Design and styling of website |
 | js/main.js | Interactive elements of website |
 

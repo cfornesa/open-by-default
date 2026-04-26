@@ -1,10 +1,10 @@
 // ========================================
-// Open by Default - Main JavaScript
+// Open Creatrweb - Main JavaScript
 // Unified animation system for consistent cross-platform behavior
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Open by Default initialized')
+  console.log('Open Creatrweb initialized')
 
   // ===== MOBILE NAVIGATION =====
   const menuToggle = document.querySelector('.menu-toggle')
